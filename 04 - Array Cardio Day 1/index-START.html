@@ -36,22 +36,42 @@
       'Billings, Josh', 'Birrell, Augustine', 'Blair, Tony', 'Beecher, Henry', 'Biondo, Frank'
     ];
     
+
+
+
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
 
+    console.log(inventors.filter(e => e.year < 1599 && e.year > 1499))
+
+
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-
+    inventors.map(e => (e.first + ' ' + e.last))
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    inventors.sort((a, b) => b.year - a.year)
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-
+    inventors.reduce((p, c) => {
+      return p + c.passed - c.year;
+    }, 0)
     // 5. Sort the inventors by years lived
+        
+    inventors.sort((a, b) => {
+        const first = a.passed - a.year
+        const second = b.passed - b.year;
+        return first > second ? -1 : 1
+        
+      } )  
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    const category = document.querySelector('.mw-category-generated') 
+    const links = [...category.querySelectorAll('a')]
+    const de = links.map(link => link.textContent)
+                    .filter(link => link.includes('de'))
+										
 
 
     // 7. sort Exercise
